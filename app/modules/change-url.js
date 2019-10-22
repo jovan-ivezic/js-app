@@ -1,0 +1,1 @@
+history.pushState({ id: 'home'}, 'Home | My App', 'http://localhost:8080/home');

@@ -1,0 +1,21 @@
+/*Header*/
+
+.header {
+    background-color: grey;
+    padding: 15px 20px;
+    text-align: center;
+}
+
+.nav-link {
+    color: #fff;
+    display: inline-block;
+    margin: 0 15px;
+    font-weight: 300;
+}
+
+.nav-link {
+
+    &:hover {
+        text-decoration: none;
+    }
+}

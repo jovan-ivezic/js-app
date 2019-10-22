@@ -1,0 +1,22 @@
+/*Authors*/
+.authors {
+    display: grid;
+    font-size: 12px;
+    font-weight: 300;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-gap: 25px;
+    list-style-type: none;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.authors {
+
+    img {
+        border-radius: 50%;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+}
