@@ -110,26 +110,3 @@ Gallery.prototype = {
 }
 
 new Gallery();
-
-// export default class CallbackExample1  {
-
-//     constructor() {
-
-//     }
-
-//     run() {
-//         this.logUser(this.getUserMessages);
-//     }
-
-//     logUser(callback) {
-//         setTimeout(function () {
-//             console.log('user logged');
-//             callback();
-//         }, 3000);
-//     }
-
-//     getUserMessages() {
-//         console.log('user inbox fetched');
-//     }
-
-// }
