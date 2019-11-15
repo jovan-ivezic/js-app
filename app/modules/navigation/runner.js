@@ -1,19 +1,29 @@
-'use strict';
+import {
+    LINKS
+} from './constants'
 
-var Navigation = function() {
-    this.init();
-    this.openLastSeenPage();
-}
+export default class Navigation {
 
-Navigation.prototype = {
+    constructor() {
+        this.init();
+        this.openLastSeenPage();
+    }
 
-    onLinkClick: function(e) {
+    init() {
+        let links = document.querySelectorAll(LINKS);
+
+        links.forEach((el) => {
+            el.addEventListener('click', (e) => this.onLinkClick(e));
+        });
+    }
+
+    onLinkClick(e) {
         let url = this.getUrl(e);
         this.setUrl(url);
         this.changeContent(url);
-    },
+    }
 
-    getUrl: function(e) {
+    getUrl(e) {
         e.preventDefault();
         let link = e.target;
 
@@ -21,22 +31,14 @@ Navigation.prototype = {
             linkHref: link.getAttribute('href'),
             linkText: link.innerHTML
         }
-    },
+    }
 
-    setUrl: function(clickedLink) {
+    setUrl(clickedLink) {
         history.pushState({page: clickedLink.linkText}, clickedLink.linkText, clickedLink.linkHref);
         window.localStorage.setItem('clickedLink', JSON.stringify(clickedLink));
-    },
+    }
 
-    init: function() {
-        let links = document.querySelectorAll('.js-nav-link');
-
-        links.forEach((el) => {
-            el.addEventListener('click', (e) => this.onLinkClick(e));
-        });
-    },
-
-    changeContent: function(clickedLink) {
+    changeContent(clickedLink) {
         let contentHolder = document.getElementById('js-content');
         fetch('views/partials'+clickedLink.linkHref+'.hbs', {mode: 'no-cors'})
         .then(response => response.text())
@@ -44,16 +46,14 @@ Navigation.prototype = {
             contentHolder.innerHTML = data;
         })
         .catch(error => console.error(error));
-    },
+    }
 
-    openLastSeenPage: function() {
+    openLastSeenPage() {
         if(localStorage.length) {
             let link = JSON.parse(window.localStorage.getItem('clickedLink'));
-            console.log(link);
+            // console.log(link);
             this.setUrl(link);
             this.changeContent(link);
         }
     }
 }
-
-new Navigation();
