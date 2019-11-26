@@ -40,7 +40,7 @@ export default class Navigation {
 
     changeContent(clickedLink) {
         let contentHolder = document.getElementById('js-content');
-        fetch('views/partials'+clickedLink.linkHref+'.hbs', {mode: 'no-cors'})
+        fetch('templates/partials'+clickedLink.linkHref+'.hbs', {mode: 'no-cors'})
         .then(response => response.text())
         .then(data =>  {
             contentHolder.innerHTML = data;

@@ -27,7 +27,7 @@
 }
 
 .close {
-    background-image: url('build/images/close.svg');
+    background-image: url('/img/close.svg');
     color: #fff;
     height: 20px;
     top: 20px;
@@ -46,11 +46,11 @@
 }
 
 .arrow-prev {
-    background-image: url('build/images/back.svg');
+    background-image: url('/img/back.svg');
 }
 
 .arrow-next {
-    background-image: url('build/images/next.svg');
+    background-image: url('/img/next.svg');
 }
 
 .input-wrap {

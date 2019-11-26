@@ -9,15 +9,17 @@ export default class Gallery {
 
     constructor() {
         //create gallery markup
+        console.log('usao u gallery class');
         this.createGalleryHtml();
 
-        let galleryContainer = document.getElementById(GALLERY);
-        let galleryItem = document.querySelectorAll(GALLERYITEM);
+        let galleryContainer = document.getElementById('js-gallery-modal');
+        let galleryItem = document.querySelectorAll('.js-gallery-item');
         let nextButton = document.getElementById('js-arrow-next');
         let prevButton = document.getElementById('js-arrow-prev');
-
+        console.log(galleryItem);
         //open gallery
         galleryItem.forEach(el => {
+            console.log(el);
             el.addEventListener('click', this.openGallery.bind(this));
         });
         //close gallery
@@ -29,7 +31,7 @@ export default class Gallery {
     }
 
     totalItems() {
-        return document.querySelectorAll(GALLERYITEM).length;
+        return document.querySelectorAll('.js-gallery-item').length;
     }
 
     createGalleryHtml() {
@@ -47,7 +49,7 @@ export default class Gallery {
     }
 
     setIndex() {
-        var galleryItems = document.querySelectorAll(MODALIMAGE);
+        var galleryItems = document.querySelectorAll('.js-gallery-item');
         galleryItems.forEach((item,index) => {
             item.setAttribute('data-index', index);
         });
@@ -62,6 +64,7 @@ export default class Gallery {
     }
 
     openGallery(e) {
+        console.log('open method init');
         e.preventDefault();
         let currentImgIndex = e.target.dataset.index;
         let getClickedImageSrc = e.target.currentSrc;

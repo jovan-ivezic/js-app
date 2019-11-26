@@ -22,21 +22,10 @@ import AboutPage from './pages/about';
 
 const router = new Router();
 
-router.add({
-    path: '/home',
-    runner: GalleryPage
-}).add({
-    path: '/about',
-    runner: AboutPage
+router.add({path: '/',
+runner: GalleryPage
 }).run();
-
-// import SearchPage from "./pages/search";
-// import MessagesPage from "./pages/messages";
-// import ProfilePage from "./pages/profile";
-// import AccountPage from "./pages/account";
-// import AccountSettingsPage from "./pages/account-settings";
-// import EmailSettingsPage from "./pages/email-settings";
-// import GalleryPage from "./pages/gallery";
-// import BasePage from "./pages/base-page";
-// import PasswordReset from './modules/password-reset/runner';
-// import PersonalDetailsPage from './pages/personal-details';
+// .add({
+//     path: 'about',
+//     runner: AboutPage
+// }).run();

@@ -8,6 +8,7 @@ export default class GalleryPage extends BasePage {
     }
 
     run() {
+        console.log('gallery page');
         new Gallery();
     }
 }
