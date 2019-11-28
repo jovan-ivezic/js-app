@@ -1,10 +1,10 @@
 export default class About {
 
     constructor() {
-        this.init();
+        this.run();
     }
 
-    init() {
+    run() {
         console.log('We are on the About page');
     }
 }

@@ -1,7 +1,7 @@
 export default class IIFYExample {
 
     constructor() {
-
+        this.run();
     }
 
     run() {

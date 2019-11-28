@@ -6,7 +6,7 @@ export default class Navigation {
 
     constructor() {
         this.init();
-        this.openLastSeenPage();
+        // this.openLastSeenPage();
     }
 
     init() {
@@ -44,8 +44,7 @@ export default class Navigation {
         .then(response => response.text())
         .then(data =>  {
             contentHolder.innerHTML = data;
-        })
-        .catch(error => console.error(error));
+        }).catch(error => console.error(error));
     }
 
     openLastSeenPage() {

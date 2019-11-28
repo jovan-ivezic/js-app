@@ -8,40 +8,54 @@ import {
 export default class Gallery {
 
     constructor() {
-        //create gallery markup
-        console.log('usao u gallery class');
+        this.init();
+    }
+
+    init() {
         this.createGalleryHtml();
 
-        let galleryContainer = document.getElementById('js-gallery-modal');
+        //open gallery
         let galleryItem = document.querySelectorAll('.js-gallery-item');
+        galleryItem.forEach((el) => {
+            el.addEventListener('click', this.openGallery);
+        });
+
+        let galleryContainer = document.getElementById(GALLERY);
         let nextButton = document.getElementById('js-arrow-next');
         let prevButton = document.getElementById('js-arrow-prev');
-        console.log(galleryItem);
-        //open gallery
-        galleryItem.forEach(el => {
-            console.log(el);
-            el.addEventListener('click', this.openGallery.bind(this));
-        });
-        //close gallery
+
+        //close gallery - two ways
+        // galleryContainer.addEventListener('click', (e) => this.closeGallery(e));
         galleryContainer.addEventListener('click', this.closeGallery.bind(this));
         //show next item
-        nextButton.addEventListener('click', this.getNextItem.bind(this));
+        nextButton.addEventListener('click', (e) => this.getNextItem(e));
         //show prev item
-        prevButton.addEventListener('click', this.getPrevItem.bind(this));
+        prevButton.addEventListener('click', (e) => this.getPrevItem(e));
+    }
+
+    openGallery(e) {
+        e.preventDefault();
+        let currentImgIndex = e.target.dataset.index;
+        let getClickedImageSrc = e.target.currentSrc;
+        let galleryImg = document.getElementById(MODALIMAGE);
+        galleryImg.setAttribute('src', getClickedImageSrc);
+        galleryImg.setAttribute('data-index', currentImgIndex);
+        let gallery = document.getElementById(GALLERY);
+        gallery.style.display = 'flex';
     }
 
     totalItems() {
-        return document.querySelectorAll('.js-gallery-item').length;
+        return document.querySelectorAll(GALLERYITEM).length;
     }
 
     createGalleryHtml() {
 
         this.parseHtml(
             '<div class="gallery-modal-content">' +
-                '<a href="javascript:;" id="js-arrow-prev" class="js-arrow-prev arrow arrow-prev"></a>' +
-                '<img id="js-modal-img">' +
-                '<a href="javascript:;" id="js-arrow-next" class="js-arrow-next arrow arrow-next"></a>' +
-                '<a href="javascript:;" id="js-close" class="js-close close"></a>' +
+            '<a href="javascript:;" id="js-arrow-prev" class="js-arrow-prev arrow arrow-prev"></a>' +
+            '<img id="js-modal-img">' +
+            '<a href="javascript:;" id="js-arrow-next" class="js-arrow-next arrow arrow-next"></a>' +
+            '<a href="javascript:;" id="js-close" class="js-close close"></a>' +
             '</div>'
         );
 
@@ -49,8 +63,8 @@ export default class Gallery {
     }
 
     setIndex() {
-        var galleryItems = document.querySelectorAll('.js-gallery-item');
-        galleryItems.forEach((item,index) => {
+        var galleryItems = document.querySelectorAll(GALLERYITEM);
+        galleryItems.forEach((item, index) => {
             item.setAttribute('data-index', index);
         });
     }
@@ -60,27 +74,14 @@ export default class Gallery {
         el.setAttribute('id', GALLERY);
         el.classList.add('gallery-modal');
         el.innerHTML = html.trim();
-        document.body.appendChild(el);
-    }
-
-    openGallery(e) {
-        console.log('open method init');
-        e.preventDefault();
-        let currentImgIndex = e.target.dataset.index;
-        let getClickedImageSrc = e.target.currentSrc;
-        let galleryImg = document.getElementById(MODALIMAGE);
-        galleryImg.setAttribute('src', getClickedImageSrc);
-        galleryImg.setAttribute('data-index', currentImgIndex);
-        let gallery = document.getElementById(this.gallery);
-        gallery.style.display = 'flex';
+        document.body.prepend(el);
     }
 
     closeGallery(e) {
-        let clickedEl = e.target;
         let clickedElId = e.target.id;
 
-        if (clickedElId === this.gallery || clickedElId === this.close) {
-            document.getElementById(this.gallery).style.display = 'none';
+        if (clickedElId === GALLERY || clickedElId === CLOSE) {
+            document.getElementById(GALLERY).style.display = 'none';
         }
     }
 
@@ -90,18 +91,17 @@ export default class Gallery {
         } else if (position < 0) {
             position = this.totalItems() - 1;
         }
-
         return position;
     }
 
     getCurrentActivePos() {
-        let currentOpenedImage = document.getElementById(this.modalImage);
+        let currentOpenedImage = document.getElementById(MODALIMAGE);
         let currentOpenedImageIndex = currentOpenedImage.getAttribute('data-index');
         return Number(currentOpenedImageIndex);
     }
 
     getNextItem() {
-       this.setItemPos(this.getCurrentActivePos() + 1);
+        this.setItemPos(this.getCurrentActivePos() + 1);
     }
 
     getPrevItem() {
@@ -110,9 +110,9 @@ export default class Gallery {
 
     setItemPos(position) {
         let newPositionToSet = this.normalizePosition(position);
-        let modalImage = document.getElementById(this.modalImage);
-        let newItemSrc = document.querySelector('[data-index = "' + newPositionToSet +'"]').getAttribute('src');
+        let modalImage = document.getElementById(MODALIMAGE);
+        let newItemSrc = document.querySelector('[data-index = "' + newPositionToSet + '"]').getAttribute('src');
         modalImage.setAttribute('data-index', newPositionToSet);
         modalImage.setAttribute('src', newItemSrc);
     }
-}
+};
