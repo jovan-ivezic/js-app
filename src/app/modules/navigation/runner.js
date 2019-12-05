@@ -6,7 +6,7 @@ export default class Navigation {
 
     constructor() {
         this.init();
-        // this.openLastSeenPage();
+        this.openLastSeenPage();
     }
 
     init() {
@@ -50,9 +50,8 @@ export default class Navigation {
     openLastSeenPage() {
         if(localStorage.length) {
             let link = JSON.parse(window.localStorage.getItem('clickedLink'));
-            // console.log(link);
             this.setUrl(link);
-            this.changeContent(link);
+            // this.changeContent(link);
         }
     }
 }

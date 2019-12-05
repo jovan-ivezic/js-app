@@ -1,17 +1,22 @@
 // require('./modules/examples/iify.js');
 
+//Education - code examples
+import IIFYExample from './modules/examples/iify.js';
+import localStorage from './modules/examples/local-storage.js';
+import Spread from './modules/examples/spread.js';
+// new IIFYExample();
+// new localStorage();
+// new Spread();
+
+
+//Modules related with task
 import Navigation from './modules/navigation/runner.js';
 import Gallery from './modules/gallery/runner.js';
-import IIFYExample from './modules/examples/iify.js';
 import About from './modules/about/runner.js';
 
 new About();
-// new IIFYExample();
-//Init modules
 new Navigation();
 new Gallery();
-// new IIFYExample().run();
-// new localStorage();
 
 
 // import Router from 'g4.es6.router'

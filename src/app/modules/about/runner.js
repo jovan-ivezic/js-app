@@ -1,7 +1,7 @@
 export default class About {
 
     constructor() {
-        this.run();
+        // this.run();
     }
 
     run() {
