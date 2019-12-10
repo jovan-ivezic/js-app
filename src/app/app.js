@@ -4,9 +4,11 @@
 import IIFYExample from './modules/examples/iify.js';
 import localStorage from './modules/examples/local-storage.js';
 import Spread from './modules/examples/spread.js';
+import ArrowFunction from './modules/examples/arrow-functions.js';
 // new IIFYExample();
 // new localStorage();
 // new Spread();
+new ArrowFunction();
 
 
 //Modules related with task

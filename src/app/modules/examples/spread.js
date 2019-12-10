@@ -10,6 +10,7 @@
 // Rest parameters are used to create functions that accept any number of arguments.
 // The spread operator is used to pass an array to functions that normally require a list of many arguments.
 
+//Spred opeartor and rest parameters
 export default class Spread {
     constructor() {
         this.run();
