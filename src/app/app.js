@@ -1,4 +1,4 @@
-// require('./modules/examples/iify.js');
+require('./modules/examples/learning.js');
 
 //Education - code examples
 import IIFYExample from './modules/examples/iify.js';
@@ -8,7 +8,7 @@ import ArrowFunction from './modules/examples/arrow-functions.js';
 // new IIFYExample();
 // new localStorage();
 // new Spread();
-new ArrowFunction();
+// new ArrowFunction();
 
 
 //Modules related with task
