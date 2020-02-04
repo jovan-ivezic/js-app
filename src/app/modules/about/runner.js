@@ -1,38 +1,32 @@
 export default class About {
 
-    constructor() {
-        // this.run();
+    run() {
+        this.fetchAuthors();
     }
 
-    run() {
-        console.log('We are on the About page');
+    fetchAuthors() {
+        const ul = document.getElementById('authors');
+        const url = 'https://randomuser.me/api/?results=20';
+
+        fetch(url)
+            .then(response => response.json())
+            .then((data) => {
+                let authorsArray = data.results;
+                return authorsArray.map((author) => {
+                    this.parseHtml(ul,
+                        `<li>
+                            <img src="${author.picture.large}"/>
+                            <span>${author.name.first} ${author.name.last}, ${author.location.country}</span>
+                        </li>`
+                    )
+                })
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }
+    //el = targeted element, html = markup
+    parseHtml(el, html) {
+        el.insertAdjacentHTML('afterbegin', html.trim());
     }
 }
-// function createNode(element) {
-//     return document.createElement(element);
-// }
-
-// function append(parent, el) {
-//     return parent.appendChild(el);
-// }
-
-// const ul = document.getElementById('authors');
-// const url = 'https://randomuser.me/api/?results=16';
-// fetch(url)
-// .then((resp) => resp.json())
-// .then(function(data) {
-//     let authors = data.results;
-//     return authors.map(function(author) {
-//     let li = createNode('li'),
-//     img = createNode('img'),
-//     span = createNode('span');
-//     img.src = author.picture.medium;
-//     span.innerHTML = `${author.name.first} ${author.name.last}`;
-//     append(li, img);
-//     append(li, span);
-//     append(ul, li);
-// })
-// })
-// .catch(function(error) {
-//     console.log(error);
-// });

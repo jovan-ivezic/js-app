@@ -1,12 +1,19 @@
 export default class ArrowFunction {
 
     constructor() {
-        this.init();
+        
     }
 
     init() {
-        var materijali = ['bakar', 'olovo', 'cink'];
-        console.log(materijali.map(materijal => materijal.length));
+       const button = document.getElementById('button');
+
+       button.addEventListener('click', function() {
+           console.log(this);
+       });
+
+       button.addEventListener('click', () => {
+           console.log(this);
+       });
     }
 }
 

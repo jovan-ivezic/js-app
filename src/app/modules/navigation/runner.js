@@ -51,7 +51,7 @@ export default class Navigation {
         if(localStorage.length) {
             let link = JSON.parse(window.localStorage.getItem('clickedLink'));
             this.setUrl(link);
-            // this.changeContent(link);
+            this.changeContent(link);
         }
     }
 }

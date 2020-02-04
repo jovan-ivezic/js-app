@@ -1,4 +1,4 @@
-export default class IIFYExample {
+export default class IIFEExample {
 
     constructor() {
         this.run();

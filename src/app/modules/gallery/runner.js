@@ -51,12 +51,15 @@ export default class Gallery {
     createGalleryHtml() {
 
         this.parseHtml(
-            '<div class="gallery-modal-content">' +
-            '<a href="javascript:;" id="js-arrow-prev" class="js-arrow-prev arrow arrow-prev"></a>' +
-            '<img id="js-modal-img">' +
-            '<a href="javascript:;" id="js-arrow-next" class="js-arrow-next arrow arrow-next"></a>' +
-            '<a href="javascript:;" id="js-close" class="js-close close"></a>' +
-            '</div>'
+            '<div id="js-gallery-modal" class="gallery-modal">' +
+                '<div class="gallery-modal-content">' +
+                    '<a href="javascript:;" id="js-arrow-prev" class="js-arrow-prev arrow arrow-prev"></a>' +
+                    '<img id="js-modal-img">' +
+                    '<a href="javascript:;" id="js-arrow-next" class="js-arrow-next arrow arrow-next"></a>' +
+                    '<a href="javascript:;" id="js-close" class="js-close close"></a>' +
+                '</div>' +
+            '</div>',
+            document.body
         );
 
         this.setIndex();
@@ -69,12 +72,8 @@ export default class Gallery {
         });
     }
 
-    parseHtml(html) {
-        var el = document.createElement('div');
-        el.setAttribute('id', GALLERY);
-        el.classList.add('gallery-modal');
-        el.innerHTML = html.trim();
-        document.body.prepend(el);
+    parseHtml(html, el) {
+        el.insertAdjacentHTML('afterbegin', html.trim());
     }
 
     closeGallery(e) {
